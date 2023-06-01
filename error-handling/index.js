@@ -6,6 +6,14 @@ module.exports = (app) => {
 
   app.use((err, req, res, next) => {
     // whenever you call next(err), this middleware will handle the error
+    // Check if error code status is 401 (Unauthorized):
+    if (err.status === 401) {
+      res.status(401).json({
+        errorMessage: "Token not valid or not delivered"
+      })
+      return;
+    }
+
     // always logs the error
     console.error("ERROR", req.method, req.path, err);
 
