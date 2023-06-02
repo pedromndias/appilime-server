@@ -11,10 +11,10 @@ const isAuthenticated = jwt({
     requestProperty: "payload",
     // Callback with the request from the server call:
     getToken: (req) => {
-        console.log(req.headers)
+        // console.log(req.headers)
         // Validate if the user is sending a token:
         if (!req.headers || !req.headers.authorization) {
-            console.log("There is no token")
+            // console.log("There is no token")
             return null
         }
 
@@ -25,11 +25,11 @@ const isAuthenticated = jwt({
 
         // Check clause if the token type is not Bearer
         if (tokenType !== "Bearer") {
-            console.log("Token type not correct")
+            // console.log("Token type not correct")
             return null
         }
 
-        console.log("Token delivered")
+        // console.log("Token delivered")
         return token
     }
 })

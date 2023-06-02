@@ -1,3 +1,5 @@
+//* This file has all the routes regarding authentication
+
 const router = require("express").Router();
 // Require bcrypt to encrypt password:
 const bcrypt = require("bcryptjs");
@@ -130,9 +132,9 @@ router.post("/login", async (req, res, next) => {
 // GET "/api/auth/verify" => Tell the Frontend if the user is logged in (validation):
 router.get("/verify", isAuthenticated, (req, res, next) => {
     // ? Here we will get and validate the token (isAuthenticated middleware). Then extract the payload and tell the Frontend who is the user of the Token. We also need to install express-jwt to create that middleware.
-    console.log(req.payload)
+    // console.log(req.payload)
     // req.payload is the active user. Let's send it to the Frontend:
-    res.json({payload: req.payload})
+    res.status(200).json({payload: req.payload})
 })
 
 module.exports = router;
