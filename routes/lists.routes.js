@@ -54,7 +54,6 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
     }
 })
 
-
 // GET "/api/lists/:todoListId" => Sent the Frontend details of a Todo List by its Id:
 router.get("/:todoListId", isAuthenticated, async (req, res, next) => {
     // Get the params:

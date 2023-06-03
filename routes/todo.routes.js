@@ -34,9 +34,15 @@ router.post("/:todoListId", isAuthenticated, async (req, res, next) => {
         // Get the params:
         const {todoListId} = req.params;
 
+        // Validate if the name is not an empty string:
+        if (!name) {
+            res.status(400).json({ errorMessage: "Please type a To-Do" });
+        return;
+        }
+
         // Get the payload from the isAuthenticated middleware and access the id of the user that is logged in:
         const userId = req.payload._id
-        console.log(userId);
+        // console.log(userId);
 
         const newTodo = {
             name,
@@ -58,8 +64,8 @@ router.patch("/:todoId", isAuthenticated, async (req, res, next) => {
     
     const {todoId} = req.params
     const {isChecked} = req.body
-    console.log(todoId)
-    console.log(isChecked);
+    // console.log(todoId)
+    // console.log(isChecked);
     try {
         const response = await Todo.findByIdAndUpdate(todoId, {
             isChecked
