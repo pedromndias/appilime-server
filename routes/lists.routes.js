@@ -30,13 +30,22 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 
 // POST "/api/lists/create" => Gets details of a Todo List from the Frontend and creates a new List on our DB:
 router.post("/create", isAuthenticated, async (req, res, next) => {
+    //console.log("Testing create todo list")
+    // Get the name from the req.body
+    const {name} = req.body
+    // console.log(name)
+
+    //*  Validation:
+    // name field must not be empty:
+    if (!name) {
+        // Let's send an error:
+        res.status(400).json({ errorMessage: "Please write a list name" });
+        // Stop the execution of the route:
+        return;
+    }
 
     try {
-        //console.log("Testing create todo list")
-
-        // Get the name from the req.body
-        const {name} = req.body
-        // console.log(name)
+        
 
         // Get the payload from the isAuthenticated middleware and access the id of the user that is logged in:
         const userId = req.payload._id
@@ -92,6 +101,15 @@ router.patch("/:todoListId", isAuthenticated, async (req, res, next) => {
     const {name} = req.body
     // console.log(name)
     // console.log(todoListId)
+    
+    //*  Validation:
+    // name field must not be empty:
+    if (!name) {
+        // Let's send an error:
+        res.status(400).json({ errorMessage: "Please write a list name" });
+        // Stop the execution of the route:
+        return;
+    }
     try {
         // Update the specific Todo List with todoListId;
         const response = await List.findByIdAndUpdate(todoListId, {
