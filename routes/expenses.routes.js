@@ -28,7 +28,7 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
     // console.log("Testing create an expense");
     // Get variables from the req.body:
     // console.log(req.body);
-    const {name, price, geoLocation} = req.body
+    const {name, price, location, geoLocation} = req.body
     //*  Validation:
     // name and price fields must not be empty:
     if (!name || !price) {
@@ -46,6 +46,7 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
         const newExpense = {
             name,
             price,
+            location,
             geoLocation,
             creator: userId
         }
@@ -88,7 +89,7 @@ router.delete("/:expenseId", isAuthenticated, async (req, res, next) => {
 router.put("/:expenseId", isAuthenticated, async (req, res, next) => {
     // console.log("Testing expense edit");
     const {expenseId} = req.params
-    const {name, price, geoLocation} = req.body
+    const {name, price, location,geoLocation} = req.body
 
     // Validation:
     if (!name || !price) {
@@ -102,6 +103,7 @@ router.put("/:expenseId", isAuthenticated, async (req, res, next) => {
         const response = await Expense.findByIdAndUpdate(expenseId, {
             name,
             price,
+            location,
             geoLocation
         })
         // Check if we could update the Expense:
@@ -110,6 +112,16 @@ router.put("/:expenseId", isAuthenticated, async (req, res, next) => {
         } else {
             res.json("Expense not found (and not updated)")
         }
+    } catch (error) {
+        next(error)
+    }
+})
+
+// DELETE "/api/expenses" => Deletes all expenses:
+router.delete("/", isAuthenticated, async (req, res, next) => {
+    try {
+        await Expense.deleteMany({})
+        res.json("All documents deleted")
     } catch (error) {
         next(error)
     }
