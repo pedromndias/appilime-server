@@ -10,6 +10,7 @@ const expenseSchema = new Schema(
             type: Number,
             required: [true, "Price is required"]
         },
+        location: String,
         geoLocation: [Number],
         creator: {
             type: Schema.Types.ObjectId,
