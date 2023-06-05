@@ -1,4 +1,4 @@
-//* This file has the route to upload a profile picture:
+//* This file has the routes to upload a profile picture:
 
 // Require our model:
 const User = require("../models/User.model")
@@ -18,7 +18,7 @@ router.post("/", uploader.single("image"), (req, res, next) => {
       next("No file uploaded!");
       return;
     }
-  
+    
     // Get the URL of the uploaded file and send it as a response.
     res.json({ imageUrl: req.file.path });
   });

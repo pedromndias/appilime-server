@@ -46,5 +46,30 @@ router.patch("/username", isAuthenticated, async (req, res, next) => {
     }
 })
 
+// PATCH "/api/profile/picture" => Gets data from the profile and updates the User's profile picture:
+router.patch("/picture", isAuthenticated, async (req, res, next) => {
+    console.log("Testing editing the profile picture");
+    const {imageUrl} = req.body
+    // Validation:
+    if (!imageUrl) {
+        // If there is no image, let's send an error:
+        res.status(400).json({ errorMessage: "Please insert a profile picture" });
+        // Stop the execution of the route:
+        return;
+    }
+    try {
+        // Get the userID:
+        const userId = req.payload._id
+        // Update that user:
+        const response = await User.findByIdAndUpdate(userId, {
+            imageUrl
+        }, {new:true})
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 // Export router:
 module.exports = router;
