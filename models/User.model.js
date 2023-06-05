@@ -20,7 +20,7 @@ const userSchema = new Schema(
         imageUrl: String,
         mood: {
             type: String,
-            enum: ["focus", "tired", "excited", "sad"],
+            enum: ["focus", "lazy", "excited", "melancholic"],
             default: "focus"
         },
     },
