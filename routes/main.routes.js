@@ -10,9 +10,34 @@ const router = require("express").Router();
 const isAuthenticated = require("../middlewares/isAuthenticated");
 
 // GET "/api/main" => Shows the mood of a user
+router.get("/", isAuthenticated, async (req, res, next) => {
+    // console.log("Testing getting the mood");
+    try {
+        // Get the user id from the payload from the isAuthenticated middleware:
+        const userId = req.payload._id
+        const response = await User.findById(userId).select("mood")
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
+})
 
-
-// PUT "/api/main" => Gets the mood and updates it in the User (and changes theme)
+// PATCH "/api/main" => Gets the mood and updates it in the User (and changes theme)
+router.patch("/", isAuthenticated, async (req, res, next) => {
+    // console.log("Testing editing the mood");
+    const {mood} = req.body
+    try {
+        // Get the userID:
+        const userId = req.payload._id
+        // Update that user. Note the findOne and save methods so we have enum validation.
+        const response = await User.findOne({_id: userId})
+        response.mood = mood
+        response.save()
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
+})
 
 // Export router:
 module.exports = router;

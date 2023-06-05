@@ -24,7 +24,7 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 
 // PATCH "/api/profile/username" => Gets data from the profile and updates the User's username:
 router.patch("/username", isAuthenticated, async (req, res, next) => {
-    console.log("Testing editing the username");
+    // console.log("Testing editing the username");
     const {username} = req.body
     // Validation:
     if (!username) {
@@ -48,7 +48,7 @@ router.patch("/username", isAuthenticated, async (req, res, next) => {
 
 // PATCH "/api/profile/picture" => Gets data from the profile and updates the User's profile picture:
 router.patch("/picture", isAuthenticated, async (req, res, next) => {
-    console.log("Testing editing the profile picture");
+    // console.log("Testing editing the profile picture");
     const {imageUrl} = req.body
     // Validation:
     if (!imageUrl) {
