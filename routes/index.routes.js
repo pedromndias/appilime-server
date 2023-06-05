@@ -12,5 +12,11 @@ router.use("/lists", require("./lists.routes"));
 router.use("/todo", require("./todo.routes"));
 // Import and use our expenses routes:
 router.use("/expenses", require("./expenses.routes"));
+// Import and use our profile routes:
+router.use("/profile", require("./profile.routes"));
+// Import and use our profile routes:
+router.use("/main", require("./main.routes"));
+// Import and use our profile routes:
+router.use("/upload", require("./upload.routes"));
 
 module.exports = router;

@@ -105,10 +105,10 @@ router.put("/:expenseId", isAuthenticated, async (req, res, next) => {
             price,
             location,
             geoLocation
-        })
+        }, {new:true})
         // Check if we could update the Expense:
         if (response) {
-            res.json("Document updated")
+            res.json(response)
         } else {
             res.json("Expense not found (and not updated)")
         }
