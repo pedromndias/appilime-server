@@ -15,8 +15,10 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 router.get("/", isAuthenticated, async (req, res, next) => {
     // console.log("Testing")
     try {
+        // Get the user id from the payload from the isAuthenticated middleware:
+        const userId = req.payload._id;
         // Get all the Expenses from our DB:
-        const response = await Expense.find()
+        const response = await Expense.find({creator: userId})
         res.json(response)
     } catch (error) {
         next(error)

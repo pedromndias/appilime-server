@@ -20,8 +20,10 @@ router.get("/", isAuthenticated, async (req, res, next) => {
     // res.json("Testing")
 
     try {
+        // Get the user id from the payload from the isAuthenticated middleware:
+        const userId = req.payload._id;
         // Get all Todo Lists from our DB:
-        const response = await List.find()
+        const response = await List.find({creator: userId})
         res.json(response);
     } catch (error) {
         next(error)
