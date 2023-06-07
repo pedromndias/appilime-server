@@ -5,6 +5,7 @@ const listSchema = new Schema(
         name: {
             type: String,
             required: [true, "Name is required"],
+            maxLength: 20
         },
         creator: {
             type: Schema.Types.ObjectId,

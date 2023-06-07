@@ -4,7 +4,8 @@ const todoSchema = new Schema(
     {
         name: {
             type: String,
-            required: [true, "Name is required"]
+            required: [true, "Name is required"],
+            maxLength: 25
         },
         list: {
             type: Schema.Types.ObjectId,

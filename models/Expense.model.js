@@ -4,7 +4,8 @@ const expenseSchema = new Schema(
     {
         name: {
             type: String,
-            required: [true, "Name is required"]
+            required: [true, "Name is required"],
+            maxLength: 20
         },
         price: {
             type: Number,

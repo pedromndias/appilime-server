@@ -39,7 +39,7 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
         // Stop the execution of the route:
         return;
     }
-
+    
     try {
         // Get the user id from the payload from the isAuthenticated middleware:
         const userId = req.payload._id;
