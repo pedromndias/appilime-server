@@ -150,8 +150,7 @@ Expense model
 | PUT         | `/profile`                  |                  {username}            | 200            | 400, 401     | Gets data from the profile and updates the username                                         |
 | PATCH         | `/profile`                  |                  {iamgeUrl}            | 200            | 400, 401     | Gets data from the profile and updates the User's profile picture                                         |
 | GET      | `/main`          |                              | 200            | 401          | Shows the mood of a User                                      |
-| PUT         | `/main`                  |                {mood}              | 200            | 401          | Gets the mood and updates
-it in the User (and changes theme)                               |
+| PUT         | `/main`                  |                {mood}              | 200            | 401          | Gets the mood and updates it in the User (and changes theme)                               |
  GET         | `/expenses`                     |                              | 200            | 400          | Get all Expenses                   |
 | POST        | `/expenses/create`                     | {name, price, location}        | 201            | 400          | Gets details from the Frontend and creates an Expense                                    |
 | GET         | `/expenses/:expenseId`             |                              | 200            | 400, 401     | Send the Frontend details of an Expense                                         |
@@ -159,9 +158,14 @@ it in the User (and changes theme)                               |
 | DELETE      | `/expenses/:expenseId`             |                              | 200            | 401          | Deletes an Expense by its id                           
 | DELETE      | `/expenses/`             |                              | 200            | 401          | Deletes all Expenses                            
   
+
+
+## Usage
+
+If you want to run these files locally, you can download them, `cd into your project directory`, then run `npm install` to install the dependencies and finally `npm run dev`. You can use Postman to make the route calls or simply download the client repository (https://github.com/pedromndias/appilime-client)
+
+
 ## Links
-
-
 
 ### Project
 
