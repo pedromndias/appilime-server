@@ -13,6 +13,7 @@ const expenseSchema = new Schema(
         },
         location: String,
         geoLocation: [Number],
+        // Note how each Expense will have a creator (DB Relation to a "User"):
         creator: {
             type: Schema.Types.ObjectId,
             ref: "User"    

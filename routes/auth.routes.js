@@ -1,5 +1,6 @@
 //* This file has all the routes regarding authentication
 
+// Require router from express:
 const router = require("express").Router();
 // Require bcrypt to encrypt password:
 const bcrypt = require("bcryptjs");
@@ -9,12 +10,10 @@ const jwt = require("jsonwebtoken")
 // Require our middleware:
 const isAuthenticated = require("../middlewares/isAuthenticated")
 
-// Require our models:
+// Require our User model:
 const User = require("../models/User.model");
-const List = require("../models/List.model");
-const Todo = require("../models/Todo.model");
-const Expense = require("../models/Expense.model");
 
+//* All the routes:
 // POST "/api/auth/signup" => Register a new user:
 router.post("/signup", async (req, res, next) => {
     // ? Postman tests:
@@ -63,7 +62,7 @@ router.post("/signup", async (req, res, next) => {
         // console.log(hashPassword)
         // res.json(hashPassword)
 
-        //* If not registered we create a new user:
+        // And we create a new user where the password will be the new hashed password:
         await User.create({
             username,
             email,
@@ -98,7 +97,7 @@ router.post("/login", async (req, res, next) => {
             return;
         }
 
-        // Check if the password is correct:
+        // If the user is registered, let's check if the password is correct. We use the compare method from bcrypt (returns a boolean):
         const isPasswordCorrect = await bcrypt.compare(
             password,
             foundUser.password
@@ -114,7 +113,7 @@ router.post("/login", async (req, res, next) => {
             _id: foundUser._id,
             email: foundUser.email
         }
-        // Create Token (with payload, secret word and token configurations):
+        // Create Token (with payload, secret word and token configurations) using jsonwebtoken:
         const authToken = jwt.sign(
             payload,
             process.env.TOKEN_SECRET,

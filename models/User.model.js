@@ -1,5 +1,9 @@
+//* This is our User model
+
+// Require Schema and model from mongoose:
 const { Schema, model } = require("mongoose");
 
+// Create the Schema (it's an object with all the User properties):
 const userSchema = new Schema(
     {
         username: {
@@ -30,6 +34,8 @@ const userSchema = new Schema(
     }
 );
 
+// Create a model "User" with that Schema:
 const User = model("User", userSchema);
 
+// And export the model:
 module.exports = User;

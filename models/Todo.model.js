@@ -7,6 +7,7 @@ const todoSchema = new Schema(
             required: [true, "Name is required"],
             maxLength: 25
         },
+        // Note how each Todo will belong to a List (DB Relation):
         list: {
             type: Schema.Types.ObjectId,
             ref: "List"
@@ -16,6 +17,7 @@ const todoSchema = new Schema(
             type: Boolean,
             default: false
         },
+        // Note how each Todo will have also a creator (DB Relation to a "User"):
         creator: {
             type: Schema.Types.ObjectId,
             ref: "User"    

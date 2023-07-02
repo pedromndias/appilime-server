@@ -44,6 +44,7 @@ router.post("/:todoListId", isAuthenticated, async (req, res, next) => {
         const userId = req.payload._id
         // console.log(userId);
 
+        // Create a newTodo object with those 3 properties:
         const newTodo = {
             name,
             list: todoListId,
@@ -52,7 +53,6 @@ router.post("/:todoListId", isAuthenticated, async (req, res, next) => {
         // Create a new Todo:
         await Todo.create(newTodo)
         res.json("Document created")
-
 
     } catch(error) {
         next(error)
@@ -69,7 +69,7 @@ router.patch("/:todoId", isAuthenticated, async (req, res, next) => {
     try {
         const response = await Todo.findByIdAndUpdate(todoId, {
             isChecked
-        },{new: true})
+        },{new: true}) // Note the {new: true} so it will show the updated value of isChecked.
         res.json(response)
 
     } catch (error) {

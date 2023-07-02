@@ -1,5 +1,8 @@
+//* This is the file where the base route is and the other routes will be added
+
 const router = require("express").Router();
 
+// Base route ("/api"):
 router.get("/", (req, res, next) => {
   res.json("All good in here");
 });

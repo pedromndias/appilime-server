@@ -29,10 +29,11 @@ router.patch("/", isAuthenticated, async (req, res, next) => {
     try {
         // Get the userID:
         const userId = req.payload._id
-        // Update that user. Note the findOne and save methods so we have enum validation.
+        // And let's update that user:
+        // ? Note the findOne() and save() methods so we have enum validation (findByIdAndUpdate() skips certain Mongoose middleware and validation steps that occur when using findOne() and save()).
         const response = await User.findOne({_id: userId})
         response.mood = mood
-        response.save()
+        await response.save()
         res.json(response)
     } catch (error) {
         next(error)

@@ -4,10 +4,8 @@
 const List = require("../models/List.model");
 const Todo = require("../models/Todo.model")
 
-
 // Require express and create router:
 const router = require("express").Router();
-
 
 // Require our middleware:
 const isAuthenticated = require("../middlewares/isAuthenticated")
@@ -32,7 +30,7 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 
 // POST "/api/lists/create" => Gets details of a Todo List from the Frontend and creates a new List on our DB:
 router.post("/create", isAuthenticated, async (req, res, next) => {
-    //console.log("Testing create todo list")
+    // console.log("Testing create todo list")
     // Get the name from the req.body
     const {name} = req.body
     // console.log(name)
@@ -46,9 +44,8 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
         return;
     }
 
+    // If all good, let's create a Todo List:
     try {
-        
-
         // Get the payload from the isAuthenticated middleware and access the id of the user that is logged in:
         const userId = req.payload._id
         // console.log(req.payload._id)

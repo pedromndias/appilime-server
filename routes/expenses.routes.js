@@ -91,7 +91,7 @@ router.delete("/:expenseId", isAuthenticated, async (req, res, next) => {
 router.put("/:expenseId", isAuthenticated, async (req, res, next) => {
     // console.log("Testing expense edit");
     const {expenseId} = req.params
-    const {name, price, location,geoLocation} = req.body
+    const {name, price, location, geoLocation} = req.body
 
     // Validation:
     if (!name || !price) {
