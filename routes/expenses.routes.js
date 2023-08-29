@@ -31,6 +31,7 @@ router.post("/create", isAuthenticated, async (req, res, next) => {
     // Get variables from the req.body:
     // console.log(req.body);
     const {name, price, location, geoLocation} = req.body
+    
     //*  Validation:
     // name and price fields must not be empty:
     if (!name || !price) {
